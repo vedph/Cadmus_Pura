@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cadmus.Pura.Parts", "Cadmus.Pura.Parts\Cadmus.Pura.Parts.csproj", "{E669CFCF-0D03-41A6-85D2-B8FFD8550568}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cadmus.Seed.Pura.Parts", "Cadmus.Seed.Pura.Parts\Cadmus.Seed.Pura.Parts.csproj", "{E58202EA-3242-450B-8DF6-FB413B4D1782}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cadmus.Pura.Services", "Cadmus.Pura.Services\Cadmus.Pura.Services.csproj", "{19A357A3-F939-4B9A-8667-0A8449DEB04B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cadmus.Pura.Parts.Test", "Cadmus.Pura.Parts.Test\Cadmus.Pura.Parts.Test.csproj", "{C4167E56-05CC-40C4-AC0A-ADC7827D420F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cadmus.Seed.Pura.Parts.Test", "Cadmus.Seed.Pura.Parts.Test\Cadmus.Seed.Pura.Parts.Test.csproj", "{55877303-0DD2-40A4-9E79-2F642F2D11F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77A11D12-82BD-4AF8-BC14-626DFAA1953A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E669CFCF-0D03-41A6-85D2-B8FFD8550568}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E669CFCF-0D03-41A6-85D2-B8FFD8550568}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E669CFCF-0D03-41A6-85D2-B8FFD8550568}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E669CFCF-0D03-41A6-85D2-B8FFD8550568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E58202EA-3242-450B-8DF6-FB413B4D1782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E58202EA-3242-450B-8DF6-FB413B4D1782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E58202EA-3242-450B-8DF6-FB413B4D1782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E58202EA-3242-450B-8DF6-FB413B4D1782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A357A3-F939-4B9A-8667-0A8449DEB04B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A357A3-F939-4B9A-8667-0A8449DEB04B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A357A3-F939-4B9A-8667-0A8449DEB04B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A357A3-F939-4B9A-8667-0A8449DEB04B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4167E56-05CC-40C4-AC0A-ADC7827D420F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4167E56-05CC-40C4-AC0A-ADC7827D420F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4167E56-05CC-40C4-AC0A-ADC7827D420F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4167E56-05CC-40C4-AC0A-ADC7827D420F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55877303-0DD2-40A4-9E79-2F642F2D11F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55877303-0DD2-40A4-9E79-2F642F2D11F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55877303-0DD2-40A4-9E79-2F642F2D11F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55877303-0DD2-40A4-9E79-2F642F2D11F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1DE755FC-4A74-4279-B628-96BDF71A6F30}
+	EndGlobalSection
+EndGlobal
