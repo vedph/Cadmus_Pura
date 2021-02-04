@@ -90,7 +90,7 @@ namespace Cadmus.Pura.Parts
             if (!string.IsNullOrEmpty(Pos))
                 sb.Append(" [").Append(Pos).Append(']');
 
-            return base.ToString();
+            return sb.ToString();
         }
     }
 }
