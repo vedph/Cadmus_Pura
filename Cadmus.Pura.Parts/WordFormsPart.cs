@@ -37,7 +37,7 @@ namespace Cadmus.Pura.Parts
         public override IEnumerable<DataPin> GetDataPins(IItem item)
         {
             DataPinBuilder builder = new DataPinBuilder(
-                new StandardDataPinTextFilter());
+                DataPinHelper.DefaultFilter);
 
             builder.Set("tot", Forms?.Count ?? 0, false);
 
