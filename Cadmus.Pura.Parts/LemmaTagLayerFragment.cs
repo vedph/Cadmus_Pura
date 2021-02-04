@@ -52,9 +52,10 @@ namespace Cadmus.Pura.Parts
             DataPinBuilder builder = new DataPinBuilder(
                 DataPinHelper.DefaultFilter);
 
-            builder.AddValue("value", Value, filter: true, filterOptions: true);
-            builder.AddValue("u-value", Value);
-            builder.AddValue("n-value", NormValue);
+            builder.AddValue(PartBase.FR_PREFIX + "value",
+                Value, filter: true, filterOptions: true);
+            builder.AddValue(PartBase.FR_PREFIX + "u-value", Value);
+            builder.AddValue(PartBase.FR_PREFIX + "n-value", NormValue);
 
             return builder.Build(null);
         }

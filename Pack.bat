@@ -1,6 +1,7 @@
 @echo off
 echo BUILD Cadmus Pura Packages
 del .\Cadmus.Pura.Parts\bin\Debug\*.nupkg
+del .\Cadmus.Pura.Parts\bin\Debug\*.snupkg
 
 cd .\Cadmus.Pura.Parts
 dotnet pack -c Debug -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
