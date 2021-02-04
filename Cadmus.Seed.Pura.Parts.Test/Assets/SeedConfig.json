@@ -1,0 +1,27 @@
+﻿{
+  "facets": [
+    {
+      "typeId": "it.vedph.pura.word-forms",
+      "name": "forms",
+      "description": "Word forms.",
+      "colorKey": "31AB54",
+      "groupKey": "lexicon",
+      "sortKey": "forms"
+    }
+  ],
+  "seed": {
+    "options": {
+      "seed": 1,
+      "baseTextPartTypeId": "it.vedph.token-text",
+      "users": [ "zeus" ],
+      "partRoles": [],
+      "fragmentRoles": []
+    },
+    "partSeeders": [
+      {
+        "id": "seed.it.vedph.pura.word-forms"
+      }
+    ],
+    "fragmentSeeders": []
+  }
+}
