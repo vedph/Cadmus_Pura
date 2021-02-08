@@ -3,6 +3,7 @@ using System.Reflection;
 using Cadmus.Core;
 using Cadmus.Core.Config;
 using Cadmus.Core.Storage;
+using Cadmus.Itinera.Parts.Codicology;
 using Cadmus.Mongo;
 using Cadmus.Parts.General;
 using Cadmus.Philology.Parts.Layers;
@@ -41,6 +42,8 @@ namespace Cadmus.Pura.Services
                 typeof(NotePart).GetTypeInfo().Assembly,
                 // Cadmus.Philology.Parts
                 typeof(ApparatusLayerFragment).GetTypeInfo().Assembly,
+                // Cadmus.Itinera.Parts
+                typeof(MsSignaturesPart).Assembly,
                 // Cadmus.Tgr.Parts
                 typeof(MsUnit).GetTypeInfo().Assembly,
                 // Cadmus.Pura.Parts
