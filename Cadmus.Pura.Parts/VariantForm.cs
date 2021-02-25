@@ -11,6 +11,11 @@
         public string Value { get; set; }
 
         /// <summary>
+        /// Gets or sets the form's POS.
+        /// </summary>
+        public string Pos { get; set; }
+
+        /// <summary>
         /// The form's optional tag.
         /// </summary>
         public string Tag { get; set; }
@@ -23,7 +28,7 @@
         /// </returns>
         public override string ToString()
         {
-            return string.IsNullOrEmpty(Tag)? Value : $"[{Tag}] {Value}";
+            return string.IsNullOrEmpty(Tag)? Value : $"[{Tag}] ({Pos}) {Value}";
         }
     }
 }

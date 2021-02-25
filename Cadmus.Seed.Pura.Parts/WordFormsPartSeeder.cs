@@ -24,6 +24,7 @@ namespace Cadmus.Seed.Pura.Parts
             {
                 forms.Add(new Faker<VariantForm>()
                     .RuleFor(v => v.Tag, f => f.PickRandom(null, "orth", "dial"))
+                    .RuleFor(v => v.Pos, f => f.PickRandom("noun", "adj", "verb"))
                     .RuleFor(v => v.Value, f => f.Lorem.Word())
                     .Generate());
             }
@@ -55,7 +56,7 @@ namespace Cadmus.Seed.Pura.Parts
                     .RuleFor(w => w.Lemma, f => f.Lorem.Word())
                     .RuleFor(w => w.Homograph, f => (short)
                         (f.Random.Bool(0.1f) ? 1 : 0))
-                    .RuleFor(w => w.Pos, f => f.PickRandom("N", "A", "V"))
+                    .RuleFor(v => v.Pos, f => f.PickRandom("noun", "adj", "verb"))
                     .RuleFor(w => w.Note, f => f.Random.Bool(0.25f)?
                         f.Lorem.Sentence() : null)
                     .RuleFor(w => w.Variants, GetVariantForms(1, 3))
