@@ -6,7 +6,7 @@ namespace Cadmus.Pura.Parts.Test.Index
 
     static internal class IndexHelper
     {
-        static private void AddProperties(IGraphRepository repository)
+        static private int AddProperties(IGraphRepository repository)
         {
             // a (rdfs:type)
             repository.AddNode(new Node
@@ -73,9 +73,11 @@ namespace Cadmus.Pura.Parts.Test.Index
                 Tag = Node.TAG_PROPERTY,
                 Label = "has part of speech"
             });
+
+            return 9;
         }
 
-        static private void AddClasses(IGraphRepository repository)
+        static private int AddClasses(IGraphRepository repository)
         {
             repository.AddNode(new Node
             {
@@ -83,6 +85,8 @@ namespace Cadmus.Pura.Parts.Test.Index
                 IsClass = true,
                 Label = "lemma"
             });
+
+            return 1;
         }
 
         static private void AddItemRules(IGraphRepository repository)
@@ -99,7 +103,7 @@ namespace Cadmus.Pura.Parts.Test.Index
             };
             repository.AddMapping(itemMapping);
 
-            // CHILD item dsc -> rdfs:comment
+            // CHILD item dsc -> ITEM rdfs:comment ...
             repository.AddMapping(new NodeMapping
             {
                 SourceType = NodeSourceType.Item,
@@ -125,7 +129,7 @@ namespace Cadmus.Pura.Parts.Test.Index
         static private void AddPinRules(IGraphRepository repository)
         {
             // WordFormsPart
-            // eid
+            // eid -> x:forms/EID
             NodeMapping eidMapping = new NodeMapping
             {
                 SourceType = NodeSourceType.Pin,
@@ -141,7 +145,7 @@ namespace Cadmus.Pura.Parts.Test.Index
             };
             repository.AddMapping(eidMapping);
 
-            // CHILD eid kad:isInGroup item
+            // CHILD eid: x:forms/EID kad:isInGroup item
             NodeMapping eidGroupMapping = new NodeMapping
             {
                 SourceType = NodeSourceType.Pin,
@@ -154,7 +158,7 @@ namespace Cadmus.Pura.Parts.Test.Index
             };
             repository.AddMapping(eidGroupMapping);
 
-            // lemma@* x:hasForm ...
+            // lemma@*: x:forms/EID x:hasForm ...
             repository.AddMapping(new NodeMapping
             {
                 SourceType = NodeSourceType.Pin,
@@ -168,7 +172,7 @@ namespace Cadmus.Pura.Parts.Test.Index
                 TripleO = "$pin-value"
             });
 
-            // u-lemma@* x:hasIxForm ...
+            // u-lemma@*: x:forms/EID x:hasIxForm ...
             repository.AddMapping(new NodeMapping
             {
                 SourceType = NodeSourceType.Pin,
@@ -180,7 +184,7 @@ namespace Cadmus.Pura.Parts.Test.Index
                 TripleO = "$pin-value"
             });
 
-            // pos@* x:hasPOS ...
+            // pos@*: x:forms/EID x:hasPOS ...
             repository.AddMapping(new NodeMapping
             {
                 SourceType = NodeSourceType.Pin,
@@ -217,13 +221,16 @@ namespace Cadmus.Pura.Parts.Test.Index
             });
         }
 
-        static public void AddRules(IGraphRepository repository)
+        static public int AddRules(IGraphRepository repository)
         {
-            AddProperties(repository);
-            AddClasses(repository);
+            int nodeCount = AddProperties(repository);
+            nodeCount += AddClasses(repository);
+
             AddItemRules(repository);
             AddProperties(repository);
             AddPinRules(repository);
+
+            return nodeCount;
         }
     }
 }
