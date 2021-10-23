@@ -97,44 +97,79 @@ namespace Cadmus.Pura.Parts.Test
 
             List<DataPin> pins = part.GetDataPins(null).ToList();
 
-            Assert.Equal(14, pins.Count);
+            Assert.Equal(21, pins.Count);
 
+            // tot-count
             DataPin pin = pins.Find(p => p.Name == "tot-count");
             Assert.NotNull(pin);
             TestHelper.AssertPinIds(part, pin);
             Assert.Equal("3", pin.Value);
 
+            // pos
             pin = pins.Find(p => p.Name == "pos" && p.Value == "odd");
             Assert.NotNull(pin);
             TestHelper.AssertPinIds(part, pin);
-
             pin = pins.Find(p => p.Name == "pos" && p.Value == "even");
             Assert.NotNull(pin);
             TestHelper.AssertPinIds(part, pin);
 
-            pin = pins.Find(p => p.Name == "variant" && p.Value == "variant");
+            // form
+            pin = pins.Find(p => p.Name == "form" && p.Value == "la");
+            Assert.NotNull(pin);
+            TestHelper.AssertPinIds(part, pin);
+            pin = pins.Find(p => p.Name == "form" && p.Value == "lb");
+            Assert.NotNull(pin);
+            TestHelper.AssertPinIds(part, pin);
+            pin = pins.Find(p => p.Name == "form" && p.Value == "lc");
+            Assert.NotNull(pin);
+            TestHelper.AssertPinIds(part, pin);
+            pin = pins.Find(p => p.Name == "form" && p.Value == "variant");
             Assert.NotNull(pin);
             TestHelper.AssertPinIds(part, pin);
 
-            pin = pins.Find(p => p.Name == "u-variant" && p.Value == "Váriant");
-            Assert.NotNull(pin);
-            TestHelper.AssertPinIds(part, pin);
-
+            // La Lb Lc
+            int nr = 0;
             for (char c = 'a'; c <= 'c'; c++)
             {
+                nr++;
                 char uc = char.ToUpper(c);
 
-                pin = pins.Find(p => p.Name == "lid" && p.Value == $"L{uc}");
+                // eid
+                string eid = $"L{uc}";
+                pin = pins.Find(p => p.Name == "eid" && p.Value == eid);
                 Assert.NotNull(pin);
                 TestHelper.AssertPinIds(part, pin);
 
-                pin = pins.Find(p => p.Name == "lemma" && p.Value == $"l{c}");
+                // lemma@EID
+                pin = pins.Find(p => p.Name == "lemma@" + eid && p.Value == $"l{c}");
                 Assert.NotNull(pin);
                 TestHelper.AssertPinIds(part, pin);
 
-                pin = pins.Find(p => p.Name == "u-lemma" && p.Value == $"L{c}");
+                // u-lemma@EID
+                pin = pins.Find(p => p.Name == "u-lemma@" + eid && p.Value == $"L{c}");
                 Assert.NotNull(pin);
                 TestHelper.AssertPinIds(part, pin);
+
+                // pos@EID
+                string pos = nr % 2 == 0 ? "even" : "odd";
+                pin = pins.Find(p => p.Name == "pos@" + eid && p.Value == pos);
+                Assert.NotNull(pin);
+                TestHelper.AssertPinIds(part, pin);
+
+                if (nr == 2)
+                {
+                    // variant@EID
+                    pin = pins.Find(p => p.Name == "variant@" + eid
+                        && p.Value == "variant");
+                    Assert.NotNull(pin);
+                    TestHelper.AssertPinIds(part, pin);
+
+                    // u-variant@EID
+                    pin = pins.Find(p => p.Name == "u-variant@" + eid
+                        && p.Value == "Váriant");
+                    Assert.NotNull(pin);
+                    TestHelper.AssertPinIds(part, pin);
+                }
             }
         }
     }

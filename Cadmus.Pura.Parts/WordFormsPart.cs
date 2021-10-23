@@ -41,26 +41,37 @@ namespace Cadmus.Pura.Parts
 
             builder.Set("tot", Forms?.Count ?? 0, false);
 
+            HashSet<string> forms = new HashSet<string>();
+            HashSet<string> poss = new HashSet<string>();
+
             if (Forms?.Count > 0)
             {
                 foreach (WordForm form in Forms)
                 {
-                    builder.AddValue("lid", form.Lid);
-                    builder.AddValue("lemma", form.Lemma,
-                        filter: true, filterOptions: true);
-                    builder.AddValue("u-lemma", form.Lemma);
-                    builder.AddValue("pos", form.Pos);
+                    string lemma = DataPinHelper.DefaultFilter.Apply(
+                        form.Lemma, true);
+                    forms.Add(lemma);
+                    poss.Add(form.Pos);
+
+                    builder.AddValue("eid", form.Lid);
+                    builder.AddValue("lemma@" + form.Lid, lemma);
+                    builder.AddValue("u-lemma@" + form.Lid, form.Lemma);
+                    builder.AddValue("pos@" + form.Lid, form.Pos);
 
                     if (form.Variants?.Count > 0)
                     {
                         foreach (var v in form.Variants)
                         {
-                            builder.AddValue("variant", v.Value,
-                                filter: true, filterOptions: true);
-                            builder.AddValue("u-variant", v.Value);
+                            string fv = DataPinHelper.DefaultFilter.Apply(
+                                v.Value, true);
+                            forms.Add(fv);
+                            builder.AddValue("variant@" + form.Lid, fv);
+                            builder.AddValue("u-variant@" + form.Lid, v.Value);
                         }
                     }
                 }
+                builder.AddValues("form", forms);
+                builder.AddValues("pos", poss);
             }
 
             return builder.Build(this);
@@ -78,28 +89,36 @@ namespace Cadmus.Pura.Parts
                    "tot-count",
                    "The total count of forms."),
                 new DataPinDefinition(DataPinValueType.String,
-                   "lid",
+                   "eid",
                    "The list of forms lexicographic IDs.",
                    "M"),
                 new DataPinDefinition(DataPinValueType.String,
-                   "lemma",
-                   "The list of forms lemmata.",
+                   "lemma@EID",
+                   "The list of each form's lemma.",
                    "Mf"),
                 new DataPinDefinition(DataPinValueType.String,
-                   "u-lemma",
-                   "The list of unfiltered forms lemmata.",
+                   "u-lemma@EID",
+                   "The list of each form's lemmata, unfiltered.",
                    "M"),
+                new DataPinDefinition(DataPinValueType.String,
+                   "pos@EID",
+                   "The list of each form's POS.",
+                   "M"),
+                new DataPinDefinition(DataPinValueType.String,
+                   "variant@EID",
+                   "The list of each form's variants.",
+                   "Mf"),
+                new DataPinDefinition(DataPinValueType.String,
+                   "u-variant@EID",
+                   "The list of each form's variants, unfiltered.",
+                   "M"),
+                new DataPinDefinition(DataPinValueType.String,
+                   "form",
+                   "The list of each unique lemma's form or variant.",
+                   "Mf"),
                 new DataPinDefinition(DataPinValueType.String,
                    "pos",
-                   "The list of forms POS.",
-                   "M"),
-                new DataPinDefinition(DataPinValueType.String,
-                   "variant",
-                   "The list of forms filtered variants.",
-                   "Mf"),
-                new DataPinDefinition(DataPinValueType.String,
-                   "u-variant",
-                   "The list of forms unfiltered variants.",
+                   "The list of each unique form's POS.",
                    "M")
             });
         }
