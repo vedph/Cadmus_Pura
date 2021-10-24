@@ -1,0 +1,27 @@
+﻿-- namespace_lookup
+LOCK TABLES `namespace_lookup` WRITE;
+/*!40000 ALTER TABLE `namespace_lookup` DISABLE KEYS */;
+INSERT INTO `namespace_lookup` VALUES ('rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#'),('rdfs','http://www.w3.org/2000/01/rdf-schema#');
+/*!40000 ALTER TABLE `namespace_lookup` ENABLE KEYS */;
+UNLOCK TABLES;
+
+-- uri_lookup
+LOCK TABLES `uri_lookup` WRITE;
+/*!40000 ALTER TABLE `uri_lookup` DISABLE KEYS */;
+INSERT INTO `uri_lookup` VALUES (1,'a'),(3,'kad:hasFacet'),(4,'kad:isInGroup'),(2,'rdfs:comment'),(5,'x:hasForm'),(6,'x:hasIxForm'),(8,'x:hasIxVariant'),(9,'x:hasPOS'),(7,'x:hasVariantForm'),(10,'x:lemma'),(11,'x:lemmata/abaco');
+/*!40000 ALTER TABLE `uri_lookup` ENABLE KEYS */;
+UNLOCK TABLES;
+
+-- node
+LOCK TABLES `node` WRITE;
+/*!40000 ALTER TABLE `node` DISABLE KEYS */;
+INSERT INTO `node` VALUES (1,_binary '\0','property','is-a',0,NULL),(2,_binary '\0','property','comment',0,NULL),(3,_binary '\0','property','has Cadmus facet',0,NULL),(4,_binary '\0','property','is in Cadmus group',0,NULL),(5,_binary '\0','property','has linguistic form',0,NULL),(6,_binary '\0','property','has linguistic form (filtered)',0,NULL),(7,_binary '\0','property','has linguistic variant form',0,NULL),(8,_binary '\0','property','has linguistic variant form (filtered)',0,NULL),(9,_binary '\0','property','has part of speech',0,NULL),(10,_binary '',NULL,'lemma',0,NULL);
+/*!40000 ALTER TABLE `node` ENABLE KEYS */;
+UNLOCK TABLES;
+
+-- mappings
+LOCK TABLES `node_mapping` WRITE;
+/*!40000 ALTER TABLE `node_mapping` DISABLE KEYS */;
+INSERT INTO `node_mapping` VALUES (1,0,1,'Lemma item',0,'lemma',NULL,0,NULL,NULL,NULL,NULL,'x:lemmata/','{title}',NULL,NULL,NULL,NULL,_binary '\0',NULL,'Lemma item -> node'),(2,1,1,'Item description',0,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'rdfs:comment','$dsc',NULL,_binary '\0',NULL,'Item\'s description -> rdfs:comment'),(3,1,1,'Item a lemma',0,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'a','x:lemma',NULL,_binary '\0',NULL,'item a x:lemma'),(4,0,4,'Pin eid',0,'lemma',NULL,0,NULL,'it.vedph.pura.word-forms',NULL,'eid','x:forms/','{pin-value}',NULL,NULL,NULL,NULL,_binary '\0','{pin-value}',NULL),(5,4,4,'Pin eid kad:isInGroup ITEM',0,NULL,NULL,0,NULL,'it.vedph.pura.word-forms',NULL,'eid',NULL,NULL,NULL,'kad:isInGroup','$item',NULL,_binary '\0',NULL,NULL),(6,0,4,'Pin lemma@* x:hasForm ...',0,NULL,NULL,0,NULL,'it.vedph.pura.word-forms',NULL,'u-lemma@*',NULL,NULL,'$slot:{pin-eid}','x:hasForm','$pin-value',NULL,_binary '\0',NULL,NULL),(7,0,4,'Pin lemma@* x:hasIxForm ...',0,NULL,NULL,0,NULL,'it.vedph.pura.word-forms',NULL,'lemma@*',NULL,NULL,'$slot:{pin-eid}','x:hasIxForm','$pin-value',NULL,_binary '\0',NULL,NULL),(8,0,4,'Pin pos@* x:hasPOS ...',0,NULL,NULL,0,NULL,'it.vedph.pura.word-forms',NULL,'pos@*',NULL,NULL,'$slot:{pin-eid}','x:hasPOS','$pin-value',NULL,_binary '\0',NULL,NULL),(9,0,4,'Pin u-variant@* x:hasVariantForm ...',0,NULL,NULL,0,NULL,'it.vedph.pura.word-forms',NULL,'u-variant@*',NULL,NULL,'$slot:{pin-eid}','x:hasVariantForm','$pin-value',NULL,_binary '\0',NULL,NULL),(10,0,4,'Pin variant@* x:hasIxVariantForm ...',0,NULL,NULL,0,NULL,'it.vedph.pura.word-forms',NULL,'variant@*',NULL,NULL,'$slot:{pin-eid}','x:hasIxVariantForm','$pin-value',NULL,_binary '\0',NULL,NULL);
+/*!40000 ALTER TABLE `node_mapping` ENABLE KEYS */;
+UNLOCK TABLES;

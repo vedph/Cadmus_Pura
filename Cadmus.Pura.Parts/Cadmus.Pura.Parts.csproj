@@ -12,8 +12,16 @@
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageTags>Cadmus;PURA</PackageTags>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Graph.mysql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Graph.mysql" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Cadmus.Core" Version="2.4.0" />
