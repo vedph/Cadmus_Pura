@@ -5,6 +5,8 @@ using Cadmus.Core.Storage;
 using Cadmus.Mongo;
 using Cadmus.Parts.General;
 using Cadmus.Philology.Parts.Layers;
+using Cadmus.Pura.Parts;
+using Cadmus.Tgr.Parts.Codicology;
 using Fusi.Tools.Config;
 using System;
 using System.Reflection;
@@ -28,7 +30,11 @@ namespace Cadmus.Cli.Plugin.Pura
                 // Cadmus.Parts
                 typeof(NotePart).GetTypeInfo().Assembly,
                 // Cadmus.Philology.Parts
-                typeof(ApparatusLayerFragment).GetTypeInfo().Assembly
+                typeof(ApparatusLayerFragment).GetTypeInfo().Assembly,
+                // Cadmus.Tgr.Parts
+                typeof(MsUnit).GetTypeInfo().Assembly,
+                // Cadmus.Pura.Parts
+                typeof(WordFormsPart).GetTypeInfo().Assembly,
             });
 
             _partTypeProvider = new StandardPartTypeProvider(_map);
