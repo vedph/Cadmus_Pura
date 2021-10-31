@@ -59,10 +59,10 @@ namespace Cadmus.Pura.Parts.Test.Index
                 Tag = Node.TAG_PROPERTY,
                 Label = "has linguistic variant form"
             });
-            // x:hasIxVariant
+            // x:hasIxVariantForm
             repository.AddNode(new Node
             {
-                Id = repository.AddUri("x:hasIxVariant"),
+                Id = repository.AddUri("x:hasIxVariantForm"),
                 Tag = Node.TAG_PROPERTY,
                 Label = "has linguistic variant form (filtered)"
             });
