@@ -98,5 +98,26 @@
     "tripleS": "$slot:{pin-eid}",
     "tripleP": "x:hasIxVariantForm",
     "tripleO": "$pin-value"
+  },
+  {
+    "id": 11,
+    "sourceType": 4,
+    "name": "Pin category: ITEM is-a CATEGORY",
+    "partType": "it.vedph.categories",
+    "pinName": "category",
+    "tripleS": "$item",
+    "tripleP": "rdf:type",
+    "tripleOPrefix": "x:categories/",
+    "tripleO": "$pin-uid"
+  },
+  {
+    "id": 12,
+    "sourceType": 4,
+    "name": "Pin keyword..ita: ITEM x:hasKeyword KEYWORD",
+    "partType": "it.vedph.index-keywords",
+    "pinName": "keyword..ita",
+    "tripleS": "$item",
+    "tripleP": "x:hasKeyword",
+    "tripleO": "$pin-value"
   }
 ]

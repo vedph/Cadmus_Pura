@@ -63,6 +63,12 @@
     "sourceType": 0
   },
   {
+    "uri": "x:hasKeyword",
+    "isClass": false,
+    "tag": "property",
+    "label": "has keyword"
+  },
+  {
     "uri": "x:lemma",
     "isClass": true,
     "label": "lemma",
