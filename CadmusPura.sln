@@ -16,10 +16,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{77A11D12-82BD-4AF8-BC14-626DFAA1953A}"
 	ProjectSection(SolutionItems) = preProject
 		Pack.bat = Pack.bat
+		PresetMappings.json = PresetMappings.json
+		PresetNodes.json = PresetNodes.json
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cadmus.Cli.Plugin.Pura", "Cadmus.Cli.Plugin.Pura\Cadmus.Cli.Plugin.Pura.csproj", "{9C2FBFBA-8A2C-4D1D-90C9-26C87D92DEA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cadmus.Cli.Plugin.Pura", "Cadmus.Cli.Plugin.Pura\Cadmus.Cli.Plugin.Pura.csproj", "{9C2FBFBA-8A2C-4D1D-90C9-26C87D92DEA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
