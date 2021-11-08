@@ -2,6 +2,7 @@
 using Cadmus.Index.Graph;
 using Cadmus.Index.MySql;
 using Cadmus.Index.Sql;
+using Cadmus.Parts.General;
 using Fusi.DbManager;
 using Fusi.DbManager.MySql;
 using System;
@@ -124,7 +125,7 @@ namespace Cadmus.Pura.Parts.Test.Index
             // item
             IItem item = GetLemmaItem();
 
-            // part
+            // word forms part
             WordFormsPart part = new WordFormsPart
             {
                 ItemId = item.Id,
@@ -237,6 +238,128 @@ namespace Cadmus.Pura.Parts.Test.Index
             Assert.Null(triple.ObjectUri);
             Assert.Equal(part.Id + "|variant@abaco", triple.Sid);
             Assert.Null(triple.Tag);
+        }
+
+        [Fact]
+        public void MapCategoryPins()
+        {
+            Reset();
+            IGraphRepository repository = GetRepository();
+            int nodeCount = IndexHelper.AddPresets(repository, true);
+            NodeMapper mapper = new NodeMapper(repository);
+
+            // item
+            IItem item = GetLemmaItem();
+
+            CategoriesPart part = new();
+            part.Categories.Add("ph.c.h");
+            item.Parts.Add(part);
+
+            IList<DataPin> pins = part.GetDataPins(item).ToList();
+            GraphSet set = mapper.MapPins(item, part,
+                pins.Select(p => Tuple.Create(p.Name, p.Value)).ToList());
+
+            Assert.Single(set.Nodes);
+            Assert.Single(set.Triples);
+
+            // x:classes/ph.c.h already existing (injected from thesauri)
+            NodeResult node = set.Nodes[0];
+            Assert.Equal("x:classes/ph.c.h", node.Uri);
+            Assert.Equal("ph.c.h", node.Label);
+            Assert.Equal(NodeSourceType.User, node.SourceType);
+            Assert.True(node.IsClass);
+            Assert.Null(node.Sid);
+            Assert.Equal("thesaurus", node.Tag);
+
+            // x:lemmata/abaco a x:classes/ph.c.h
+            TripleResult triple = set.Triples[0];
+            Assert.Equal("x:lemmata/abaco", triple.SubjectUri);
+            Assert.Equal("rdf:type", triple.PredicateUri);
+            Assert.Equal("x:classes/ph.c.h", triple.ObjectUri);
+            Assert.Null(triple.ObjectLiteral);
+            Assert.Null(triple.Tag);
+            Assert.Equal(part.Id + "|category", triple.Sid);
+        }
+
+        [Fact]
+        public void MapKeywordPins()
+        {
+            Reset();
+            IGraphRepository repository = GetRepository();
+            int nodeCount = IndexHelper.AddPresets(repository, true);
+            NodeMapper mapper = new NodeMapper(repository);
+
+            // item
+            IItem item = GetLemmaItem();
+
+            IndexKeywordsPart part = new();
+            part.Keywords.Add(new IndexKeyword
+            {
+                Language = "eng",
+                Value = "aspiration"
+            });
+            part.Keywords.Add(new IndexKeyword
+            {
+                Language = "eng",
+                Value = "Grassman's law"
+            });
+
+            IList<DataPin> pins = part.GetDataPins(item).ToList();
+            GraphSet set = mapper.MapPins(item, part,
+                pins.Select(p => Tuple.Create(p.Name, p.Value)).ToList());
+
+            // the source pins
+            Assert.Equal(5, pins.Count);
+            Assert.Contains(pins, p => p.Name == "keyword..eng"
+                && p.Value == "aspiration");
+            Assert.Contains(pins, p => p.Name == "keyword..eng"
+                && p.Value == "grassman's law");
+            Assert.Contains(pins, p => p.Name == "u-keyword..eng"
+                && p.Value == "aspiration");
+            Assert.Contains(pins, p => p.Name == "u-keyword..eng"
+                && p.Value == "Grassman's law");
+
+            Assert.Equal(4, set.Triples.Count);
+
+            // x:lemmata/abaco x:hasKeyword "aspiration"
+            TripleResult triple = set.Triples.FirstOrDefault(
+                t => t.SubjectUri == "x:lemmata/abaco"
+                && t.PredicateUri == "x:hasKeyword"
+                && t.ObjectLiteral == "aspiration");
+            Assert.NotNull(triple);
+            Assert.Null(triple.ObjectUri);
+            Assert.Null(triple.Tag);
+            Assert.Equal(part.Id + "|u-keyword..eng", triple.Sid);
+
+            // x:lemmata/abaco x:hasKeyword "Grassman's law"
+            triple = set.Triples.FirstOrDefault(
+                t => t.SubjectUri == "x:lemmata/abaco"
+                && t.PredicateUri == "x:hasKeyword"
+                && t.ObjectLiteral == "Grassman's law");
+            Assert.NotNull(triple);
+            Assert.Null(triple.ObjectUri);
+            Assert.Null(triple.Tag);
+            Assert.Equal(part.Id + "|u-keyword..eng", triple.Sid);
+
+            // x:lemmata/abaco x:hasIxKeyword "aspiration"
+            triple = set.Triples.FirstOrDefault(
+                t => t.SubjectUri == "x:lemmata/abaco"
+                && t.PredicateUri == "x:hasIxKeyword"
+                && t.ObjectLiteral == "aspiration");
+            Assert.NotNull(triple);
+            Assert.Null(triple.ObjectUri);
+            Assert.Null(triple.Tag);
+            Assert.Equal(part.Id + "|keyword..eng", triple.Sid);
+
+            // x:lemmata/abaco x:hasIxKeyword "grassman's law"
+            triple = set.Triples.FirstOrDefault(
+                t => t.SubjectUri == "x:lemmata/abaco"
+                && t.PredicateUri == "x:hasIxKeyword"
+                && t.ObjectLiteral == "grassman's law");
+            Assert.NotNull(triple);
+            Assert.Null(triple.ObjectUri);
+            Assert.Null(triple.Tag);
+            Assert.Equal(part.Id + "|keyword..eng", triple.Sid);
         }
     }
 }

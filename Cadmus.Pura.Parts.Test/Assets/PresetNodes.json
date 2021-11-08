@@ -69,6 +69,12 @@
     "label": "has keyword"
   },
   {
+    "uri": "x:hasIxKeyword",
+    "isClass": false,
+    "tag": "property",
+    "label": "has keyword (filtered)"
+  },
+  {
     "uri": "x:lemma",
     "isClass": true,
     "label": "lemma",

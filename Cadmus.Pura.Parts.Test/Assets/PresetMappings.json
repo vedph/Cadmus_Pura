@@ -107,15 +107,25 @@
     "pinName": "category",
     "tripleS": "$item",
     "tripleP": "rdf:type",
-    "tripleOPrefix": "x:categories/",
+    "tripleOPrefix": "x:classes/",
     "tripleO": "$pin-uid"
   },
   {
     "id": 12,
     "sourceType": 4,
-    "name": "Pin keyword..ita: ITEM x:hasKeyword KEYWORD",
+    "name": "Pin keyword..eng: ITEM x:hasIxKeyword KEYWORD",
     "partType": "it.vedph.index-keywords",
-    "pinName": "keyword..ita",
+    "pinName": "keyword..eng",
+    "tripleS": "$item",
+    "tripleP": "x:hasIxKeyword",
+    "tripleO": "$pin-value"
+  },
+  {
+    "id": 13,
+    "sourceType": 4,
+    "name": "Pin u-keyword..eng: ITEM x:hasKeyword KEYWORD",
+    "partType": "it.vedph.index-keywords",
+    "pinName": "u-keyword..eng",
     "tripleS": "$item",
     "tripleP": "x:hasKeyword",
     "tripleO": "$pin-value"
