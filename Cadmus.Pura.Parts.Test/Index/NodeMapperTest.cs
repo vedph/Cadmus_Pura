@@ -65,7 +65,7 @@ namespace Cadmus.Pura.Parts.Test.Index
         {
             Reset();
             IGraphRepository repository = GetRepository();
-            int nodeCount = IndexHelper.AddRules(repository);
+            int nodeCount = IndexHelper.AddPresets(repository, false);
             NodeMapper mapper = new NodeMapper(repository);
 
             // item
@@ -104,7 +104,7 @@ namespace Cadmus.Pura.Parts.Test.Index
             Assert.Null(triple.Tag);
 
             // x:lemmata/abaco a x:lemma
-            triple = set.Triples.FirstOrDefault(t => t.PredicateUri == "a");
+            triple = set.Triples.FirstOrDefault(t => t.PredicateUri == "rdf:type");
             Assert.NotNull(triple);
             Assert.Equal("x:lemmata/abaco", triple.SubjectUri);
             Assert.Equal("x:lemma", triple.ObjectUri);
@@ -118,7 +118,7 @@ namespace Cadmus.Pura.Parts.Test.Index
         {
             Reset();
             IGraphRepository repository = GetRepository();
-            int nodeCount = IndexHelper.AddRules(repository);
+            int nodeCount = IndexHelper.AddPresets(repository, false);
             NodeMapper mapper = new NodeMapper(repository);
 
             // item

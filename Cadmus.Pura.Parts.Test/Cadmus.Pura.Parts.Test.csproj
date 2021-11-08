@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\PresetMappings.json" />
+    <None Remove="Assets\PresetNodes.json" />
+    <None Remove="Assets\PresetThesauri.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\PresetMappings.json" />
+    <EmbeddedResource Include="Assets\PresetNodes.json" />
+    <EmbeddedResource Include="Assets\PresetThesauri.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Cadmus.Index.MySql" Version="1.1.10" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
