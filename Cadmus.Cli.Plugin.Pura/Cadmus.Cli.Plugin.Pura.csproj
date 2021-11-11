@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Authors>Daniele Fusi</Authors>
     <Company>Fusi</Company>
     <Product>Cadmus</Product>
     <Description>Cadmus PURA CLI plugin</Description>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,9 +18,9 @@
     <PackageReference Include="Cadmus.Parts" Version="2.5.5" />
     <PackageReference Include="Cadmus.Philology.Parts" Version="2.4.3" />
     <PackageReference Include="Cadmus.Seed" Version="1.2.2" />
-    <PackageReference Include="Cadmus.Seed.Parts" Version="1.3.5" />
-    <PackageReference Include="Cadmus.Seed.Philology.Parts" Version="1.2.3" />
-    <PackageReference Include="Cadmus.Seed.Tgr.Parts" Version="1.1.1" />
+    <PackageReference Include="Cadmus.Seed.Parts" Version="1.3.6" />
+    <PackageReference Include="Cadmus.Seed.Philology.Parts" Version="1.2.4" />
+    <PackageReference Include="Cadmus.Seed.Tgr.Parts" Version="1.1.2" />
     <PackageReference Include="Fusi.Microsoft.Extensions.Configuration.InMemoryJson" Version="1.0.3" />
   </ItemGroup>
 

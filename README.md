@@ -4,6 +4,7 @@ Components for the [PURA project in Cadmus](https://github.com/vedph/cadmus_pura
 
 ## History
 
+- 2021-11-11: upgraded to NET 6.
 - 2021-11-09: added graph resources to parts test and refactored tests to use them.
 - 2021-10-24: added essential SQL seed code for graph.
 - 2021-10-23: refactored word form's pins to be graph-compliant.
