@@ -39,7 +39,7 @@ namespace Cadmus.Pura.Parts.Test.Index
 
         private static IGraphRepository GetRepository()
         {
-            MySqlGraphRepository repository = new MySqlGraphRepository();
+            MySqlGraphRepository repository = new();
             repository.Configure(new SqlOptions
             {
                 ConnectionString = CS
@@ -67,7 +67,7 @@ namespace Cadmus.Pura.Parts.Test.Index
             Reset();
             IGraphRepository repository = GetRepository();
             int nodeCount = IndexHelper.AddPresets(repository, false);
-            NodeMapper mapper = new NodeMapper(repository);
+            NodeMapper mapper = new(repository);
 
             // item
             IItem item = GetLemmaItem();
@@ -120,13 +120,13 @@ namespace Cadmus.Pura.Parts.Test.Index
             Reset();
             IGraphRepository repository = GetRepository();
             int nodeCount = IndexHelper.AddPresets(repository, false);
-            NodeMapper mapper = new NodeMapper(repository);
+            NodeMapper mapper = new(repository);
 
             // item
             IItem item = GetLemmaItem();
 
             // word forms part
-            WordFormsPart part = new WordFormsPart
+            WordFormsPart part = new()
             {
                 ItemId = item.Id,
                 CreatorId = "zeus",
@@ -152,8 +152,8 @@ namespace Cadmus.Pura.Parts.Test.Index
             // pos@abaco=sm, variant@abaco=abbaco, u-variant@ABBACO=ábbaco.
             Assert.Equal(10, pins.Count);
 
-            GraphSet set = mapper.MapPins(item, part,
-                pins.Select(p => Tuple.Create(p.Name, p.Value)).ToList());
+            var pairs = pins.Select(p => Tuple.Create(p.Name, p.Value)).ToList();
+            GraphSet set = mapper.MapPins(item, part, pairs);
 
             Assert.Equal(2, set.Nodes.Count);
             Assert.Equal(6, set.Triples.Count);
@@ -246,7 +246,7 @@ namespace Cadmus.Pura.Parts.Test.Index
             Reset();
             IGraphRepository repository = GetRepository();
             int nodeCount = IndexHelper.AddPresets(repository, true);
-            NodeMapper mapper = new NodeMapper(repository);
+            NodeMapper mapper = new(repository);
 
             // item
             IItem item = GetLemmaItem();
@@ -287,7 +287,7 @@ namespace Cadmus.Pura.Parts.Test.Index
             Reset();
             IGraphRepository repository = GetRepository();
             int nodeCount = IndexHelper.AddPresets(repository, true);
-            NodeMapper mapper = new NodeMapper(repository);
+            NodeMapper mapper = new(repository);
 
             // item
             IItem item = GetLemmaItem();
